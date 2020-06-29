@@ -6,9 +6,15 @@ from scipy.integrate import odeint
 
 import matplotlib.pyplot as plt
 
-# to use java in python you need to specify the path where is Java 
+
 import os
+### IMP ####
+## to use java in python you need to specify the path where is Java, this depends on the path in your computer
 os.environ['JAVA_HOME'] = "/Library/Java/JavaVirtualMachines/jdk-11.0.5.jdk/Contents/Home"
+# if you the path is saved the os.environ['JAVA_HOME'] commands is not needed
+
+
+
 from moonlight import *
 
 # importing the model, the simulation function
