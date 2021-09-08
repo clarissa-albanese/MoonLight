@@ -23,3 +23,4 @@ findProject(':examples:temporal:simpleTemporal')?.name = 'simpleTemporal'
 include 'examples:spatio-temporal:simpleGrid'
 findProject(':examples:spatio-temporal:simpleGrid')?.name = 'simpleGrid'
 
+//startParameter.setExcludedTaskNames(["distTar", "distZip"])
