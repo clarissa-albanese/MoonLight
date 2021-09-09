@@ -49,21 +49,26 @@ test {
     useJUnitPlatform()
 }
 
+final DEPRECATED = 'Dangerous copying strategy adopted for legacy code, should be refactored. See https://docs.gradle.org/current/userguide/upgrading_version_5.html#implicit_duplicate_strategy_for_copy_or_archive_tasks_has_been_deprecated'
+
 tasks.named('installDist') {
-    logger.warn('Dangerous copying strategy adopted for legacy code, should be refactored. See https://docs.gradle.org/current/userguide/upgrading_version_5.html#implicit_duplicate_strategy_for_copy_or_archive_tasks_has_been_deprecated')
+    logger.warn(DEPRECATED)
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 tasks.named('distTar') {
-    logger.warn('Dangerous copying strategy adopted for legacy code, should be refactored. See https://docs.gradle.org/current/userguide/upgrading_version_5.html#implicit_duplicate_strategy_for_copy_or_archive_tasks_has_been_deprecated')
+    logger.warn(DEPRECATED)
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 tasks.named('distZip') {
-    logger.warn('Dangerous copying strategy adopted for legacy code, should be refactored. See https://docs.gradle.org/current/userguide/upgrading_version_5.html#implicit_duplicate_strategy_for_copy_or_archive_tasks_has_been_deprecated')
+    logger.warn(DEPRECATED)
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
 task distribution(type: Copy, dependsOn:[jar, installDist]) {
-    //duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+    logger.warn(DEPRECATED)
+    duplicatesStrategy(DuplicatesStrategy.INCLUDE)
+
+    // Copying files...
     copy {
         from jar
         into rootProject.file("distribution_files/java/lib/")
@@ -71,22 +76,10 @@ task distribution(type: Copy, dependsOn:[jar, installDist]) {
         into rootProject.file("distribution_files/python/jar")
         into rootProject.file("distribution_files/console/lib/")
     }
-//    copy {
-//        from jar
-//        into rootProject.file("distribution_files/matlab/moonlight/jar")
-//    }
-//    copy {
-//        from jar
-//        into rootProject.file("distribution_files/python/jar")
-//    }
     copy {
         from "$buildDir/install/mlconsole/"
         into rootProject.file("distribution_files/console/")
     }
-//    copy {
-//        from jar
-//        into rootProject.file("distribution_files/console/lib/")
-//    }
 }
 
 task release(type: Copy, dependsOn: distribution) {
