@@ -16,10 +16,7 @@ import eu.quanticol.moonlight.formula.OnceFormula;
 import eu.quanticol.moonlight.formula.OrFormula;
 import eu.quanticol.moonlight.formula.SinceFormula;
 import eu.quanticol.moonlight.formula.UntilFormula;
-import eu.quanticol.moonlight.signal.SignalCreator;
-import eu.quanticol.moonlight.signal.SignalCreatorDouble;
 
-import java.io.BufferedReader;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.function.BiFunction;

@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import eu.quanticol.moonlight.util.Pair;
-import org.jgrapht.graph.SimpleDirectedWeightedGraph;
 
 /**
  * @author loreti

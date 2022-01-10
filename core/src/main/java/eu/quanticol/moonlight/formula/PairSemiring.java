@@ -3,9 +3,6 @@
  */
 package eu.quanticol.moonlight.formula;
 
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 import eu.quanticol.moonlight.util.Pair;
 
 /**

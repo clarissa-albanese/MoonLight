@@ -31,7 +31,6 @@ import eu.quanticol.moonlight.signal.Signal;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.function.BiFunction;
 
 /**
  * An instance of this class an be used to instantiate a monitor of given property.
