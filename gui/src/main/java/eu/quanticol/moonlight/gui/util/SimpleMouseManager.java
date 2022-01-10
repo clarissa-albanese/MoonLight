@@ -129,7 +129,7 @@ public class SimpleMouseManager implements MouseManager {
 
     private double x1, y1;
 
-    private final EventHandler<MouseEvent> mousePressed = new EventHandler<>() {
+    private final EventHandler<MouseEvent> mousePressed = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
             curElement = view.findGraphicElementAt(types, e.getX(), e.getY());
@@ -151,7 +151,7 @@ public class SimpleMouseManager implements MouseManager {
     private final EventHandler<MouseEvent> mouseDragged = event -> {
     };
 
-    private final EventHandler<MouseEvent> mouseRelease = new EventHandler<>() {
+    private final EventHandler<MouseEvent> mouseRelease = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
             if (curElement != null) {
@@ -193,7 +193,7 @@ public class SimpleMouseManager implements MouseManager {
      * If it is clicked a node, it is displayed its information and/or selected the corresponding series in the chart
      * If it is clicked outside a node, the chart series are restored
      */
-    final EventHandler<MouseEvent> mouseClicked = new EventHandler<>() {
+    final EventHandler<MouseEvent> mouseClicked = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
             curElement = view.findGraphicElementAt(types, e.getX(), e.getY());

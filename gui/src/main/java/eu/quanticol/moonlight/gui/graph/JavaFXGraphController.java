@@ -681,7 +681,7 @@ public class JavaFXGraphController {
 
     private void createTimeSlider() {
         setSlider();
-        slider.setLabelFormatter(new StringConverter<>() {
+        slider.setLabelFormatter(new StringConverter<Double>() {
             @Override
             public String toString(Double n) {
                 int index = n.intValue();
@@ -894,8 +894,12 @@ public class JavaFXGraphController {
             openWindowChoosePosition();
             if (csv != null && linkController.getColumnX() != null && linkController.getColumnY() != null) {
                 switch (graphVisualization) {
-                    case STATIC -> reloadStaticPositions();
-                    case DYNAMIC -> reloadDynamicPositions();
+                    case STATIC:
+                        reloadStaticPositions();
+                        break;
+                    case DYNAMIC:
+                        reloadDynamicPositions();
+                        break;
                 }
             }
         } catch (IOException e) {

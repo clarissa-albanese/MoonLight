@@ -7,6 +7,7 @@ import org.graphstream.graph.Node;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  * Class that implements the {@link FiltersController} interface and defines a controller for filters
@@ -21,7 +22,7 @@ public class SimpleFiltersController implements FiltersController {
 
     @Override
     public void addAttributes(String[] attributes) {
-        ArrayList<String> a = new ArrayList<>(Arrays.stream(attributes).toList());
+        ArrayList<String> a = new ArrayList<>(Arrays.stream(attributes).collect(Collectors.toList()));
         this.attributes.add(a);
     }
 

@@ -403,7 +403,7 @@ public class JavaFXHomeController {
      * Adds icons to recent files in listView
      */
     private void addImagesToList() {
-        recentFiles.setCellFactory(param -> new ListCell<>() {
+        recentFiles.setCellFactory(param -> new ListCell<RecentFile>() {
             private final ImageView displayImage = new ImageView();
             @Override
             public void updateItem(RecentFile file, boolean empty) {

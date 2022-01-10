@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Class that implements the {@link ChartBuilder} interface and builds a simple chart from a {@link TimeGraph}
@@ -49,7 +50,7 @@ public class SimpleChartBuilder implements ChartBuilder {
 
     @Override
     public void addAttributes(String[] attributes) {
-        ArrayList<String> a = new ArrayList<>(Arrays.stream(attributes).toList());
+        ArrayList<String> a = new ArrayList<>(Arrays.stream(attributes).collect(Collectors.toList()));
         this.attributes.add(a);
     }
 

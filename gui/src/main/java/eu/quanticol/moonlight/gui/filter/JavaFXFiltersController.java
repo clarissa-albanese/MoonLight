@@ -128,10 +128,10 @@ public class JavaFXFiltersController {
      * Adds a delete button for each row of table.
      */
     private void addButtonToTable() {
-        Callback<TableColumn<Filter, Void>, TableCell<Filter, Void>> cellFactory = new Callback<>() {
+        Callback<TableColumn<Filter, Void>, TableCell<Filter, Void>> cellFactory = new Callback<TableColumn<Filter, Void>, TableCell<Filter, Void>>() {
             @Override
             public TableCell<Filter, Void> call(TableColumn<Filter, Void> param) {
-                return new TableCell<>() {
+                return new TableCell<Filter, Void>() {
                     private final Button btn = new Button();
 
                     {

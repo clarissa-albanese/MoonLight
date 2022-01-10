@@ -190,8 +190,8 @@ public class JavaFXChartController {
         String[] attributes = line.split(",");
         cb.addAttributes(attributes);
         javaFXGraphController.getFiltersComponentController().getFiltersController().addAttributes(attributes);
-        cb.addLineData(lineChart.getData().stream().toList(), attributes, index);
-        cb.addLineData(lineChartLog.getData().stream().toList(), attributes, index);
+        cb.addLineData(lineChart.getData(), attributes, index);
+        cb.addLineData(lineChartLog.getData(), attributes, index);
     }
 
     private void init() {

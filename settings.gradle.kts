@@ -30,5 +30,9 @@ includeBuild("api")
 // == CLI project ==
 includeBuild("console")
 
+// == GUI project ==
+includeBuild("gui")
+
+
 // == Examples ==
 includeBuild("examples")

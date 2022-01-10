@@ -183,7 +183,8 @@ public class JavaFXMainController {
     private void saveProject() {
         p.setTra(graphComponentController.getTra());
         p.setCsv(graphComponentController.getCsv());
-        p.setFilters(new ArrayList<>(graphComponentController.getFiltersComponentController().getTableFilters().getItems().stream().toList()));
+        //TODO: Check next line!
+        p.setFilters(new ArrayList<Filter>(graphComponentController.getFiltersComponentController().getTableFilters().getItems()));
         p.setColumnsAttributes(graphComponentController.getColumnsAttributes());
         p.setPositionX(graphComponentController.getLinkController().getColumnX());
         p.setPositionY(graphComponentController.getLinkController().getColumnY());
@@ -283,8 +284,12 @@ public class JavaFXMainController {
         p.getGraphController().openRecentTRA(p.getTra());
         if (p.getGraphController().getLinkController().getColumnX() != null && p.getGraphController().getLinkController().getColumnY() != null) {
             switch (p.getGraphController().getGraphVisualization()) {
-                case STATIC -> p.getGraphController().reloadStaticPositions();
-                case DYNAMIC -> p.getGraphController().reloadDynamicPositions();
+                case STATIC:
+                    p.getGraphController().reloadStaticPositions();
+                    break;
+                case DYNAMIC:
+                    p.getGraphController().reloadDynamicPositions();
+                    break;
             }
         } else
             p.getGraphController().setPositionAssigned(false);
