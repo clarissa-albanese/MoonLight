@@ -1,7 +1,6 @@
 package eu.quanticol.moonlight.script;
 
 import eu.quanticol.moonlight.MoonLightTemporalScript;
-import eu.quanticol.moonlight.TemporalMonitorProducer;
 import eu.quanticol.moonlight.TemporalScriptComponent;
 import eu.quanticol.moonlight.formula.BooleanDomain;
 import eu.quanticol.moonlight.formula.Interval;
@@ -14,13 +13,7 @@ import eu.quanticol.moonlight.signal.Signal;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Optional;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.function.DoublePredicate;
 import java.util.function.DoubleUnaryOperator;
-import java.util.function.IntToDoubleFunction;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 

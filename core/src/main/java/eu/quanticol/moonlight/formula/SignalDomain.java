@@ -20,7 +20,6 @@
 package eu.quanticol.moonlight.formula;
 
 import eu.quanticol.moonlight.signal.DataHandler;
-import eu.quanticol.moonlight.signal.Signal;
 
 import java.util.function.BiFunction;
 

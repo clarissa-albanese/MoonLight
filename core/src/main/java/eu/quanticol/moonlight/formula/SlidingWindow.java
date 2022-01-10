@@ -19,10 +19,8 @@
  *******************************************************************************/
 package eu.quanticol.moonlight.formula;
 
-import java.util.LinkedList;
 import java.util.function.BiFunction;
 
-import eu.quanticol.moonlight.signal.Sample;
 import eu.quanticol.moonlight.signal.Segment;
 import eu.quanticol.moonlight.signal.Signal;
 import eu.quanticol.moonlight.signal.SignalCursor;

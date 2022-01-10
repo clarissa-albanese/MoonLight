@@ -30,7 +30,6 @@ import eu.quanticol.moonlight.signal.SpatialTemporalSignal;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.function.Function;
 
 /**
  * @author loreti
