@@ -6,10 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="265.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.quanticol.moonlight.gui.script.TemporalMonitor">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="265.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.quanticol.moonlight.gui.script.TemporalPopup">
    <children>
-      <Label layoutX="27.0" layoutY="21.0" text="Monitor" AnchorPane.leftAnchor="25.0">
+      <Label layoutX="27.0" layoutY="21.0" text="Temporal monitor" AnchorPane.leftAnchor="25.0">
          <font>
             <Font size="15.0" />
          </font>
@@ -18,7 +17,7 @@
       <Label layoutX="27.0" layoutY="77.0" text="Choose a monitor" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="70.0" />
       <Button layoutX="289.0" layoutY="220.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
       <Button layoutX="355.0" layoutY="220.0" mnemonicParsing="false" onAction="#execute" text="Execute" AnchorPane.rightAnchor="25.0" />
-      <Button fx:id="openCSV" layoutX="302.0" layoutY="157.0" mnemonicParsing="false" text="Choose a file .csv" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="145.0" />
+      <Button layoutX="302.0" layoutY="157.0" mnemonicParsing="false" onAction="#openCSV" text="Choose a file .csv" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="145.0" />
       <Label fx:id="fileCSV" layoutX="27.0" layoutY="161.0" prefHeight="17.0" prefWidth="236.0" textOverrun="CENTER_ELLIPSIS" visible="false" AnchorPane.topAnchor="150.0" />
       <Label layoutX="27.0" layoutY="122.0" text="File chosen" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="115.0">
          <font>

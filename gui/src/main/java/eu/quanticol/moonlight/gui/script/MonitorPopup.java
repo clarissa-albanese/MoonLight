@@ -1,6 +1,5 @@
 package eu.quanticol.moonlight.gui.script;
 
-import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -12,32 +11,22 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SpatioTemporalMonitor {
+/**
+ * Interface that defines a monitor popups
+ *
+ * @author Albanese Clarissa, Sorritelli Greta
+ */
+public interface MonitorPopup {
 
-    @FXML
-    AnchorPane root;
-    @FXML
-    Label fileTRA;
-    @FXML
-    Label fileCSV;
-    @FXML
-    MenuButton monitorMenu;
-
-    private final ArrayList<String[]> monitorsArray = new ArrayList<>();
-
-    @FXML
-    private void openTRA() {
-        fileTRA.setText("");
-        open(fileTRA, "TRA Files", "*.tra");
-    }
-
-    @FXML
-    private void openCSV() {
-        fileCSV.setText("");
-        open(fileCSV, "CSV Files", "*.csv");
-    }
-
-    private void open(Label label, String description, String extensions) {
+    /**
+     * Opens a fileChooser
+     *
+     * @param root           anchorPane of window
+     * @param label          label of filePath
+     * @param description    description of files
+     * @param extensions     extensions of files
+     */
+    default void open(AnchorPane root, Label label, String description, String extensions){
         FileChooser fileChooser = new FileChooser();
         Stage stage = (Stage) root.getScene().getWindow();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(description, extensions);
@@ -49,7 +38,20 @@ public class SpatioTemporalMonitor {
         }
     }
 
-    public void setMonitors(String[] monitors) {
+    void execute();
+
+    void cancel();
+
+    void addMonitors(String[] monitors);
+
+    /**
+     * Sets the monitors
+     *
+     * @param monitors         monitors to add
+     * @param monitorsArray    arrayList of monitors
+     * @param monitorMenu      menuButton of monitors
+     */
+    default void setMonitors(String[] monitors, ArrayList<String[]> monitorsArray, MenuButton monitorMenu){
         monitorsArray.add(monitors);
         ArrayList<MenuItem> menuItems = new ArrayList<>();
         monitorsArray.forEach(a -> {
@@ -58,18 +60,8 @@ public class SpatioTemporalMonitor {
             menuItem.setText(text);
             menuItems.add(menuItem);
         });
-        this.monitorMenu.getItems().addAll(menuItems);
+        monitorMenu.getItems().addAll(menuItems);
         monitorMenu.getItems().forEach(menuItem -> menuItem.setOnAction(event -> monitorMenu.setText(menuItem.getText())));
-    }
 
-    @FXML
-    private void execute(){
     }
-
-    @FXML
-    private void cancel(){
-        Stage stage = (Stage) root.getScene().getWindow();
-        stage.close();
-    }
-
 }

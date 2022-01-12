@@ -6,10 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="265.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.quanticol.moonlight.gui.script.SpatioTemporalMonitor">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="265.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.quanticol.moonlight.gui.script.SpatioTemporalPopup">
    <children>
-      <Label layoutX="27.0" layoutY="21.0" text="Monitor" AnchorPane.leftAnchor="25.0">
+      <Label layoutX="27.0" layoutY="21.0" text="Spatio-temporal monitor" AnchorPane.leftAnchor="25.0">
          <font>
             <Font size="15.0" />
          </font>

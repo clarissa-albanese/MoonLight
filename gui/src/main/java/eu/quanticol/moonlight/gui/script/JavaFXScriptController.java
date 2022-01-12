@@ -25,6 +25,11 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * Controller of JavaFX for the monitor/script.
+ *
+ * @author Albanese Clarissa, Sorritelli Greta
+ */
 public class JavaFXScriptController implements WindowController {
 
     @FXML
@@ -82,16 +87,16 @@ public class JavaFXScriptController implements WindowController {
     private void spatialTemporalPopup() {
         FXMLLoader fxmlLoader = openMonitorWindow("fxml/spatioTemporalMonitorComponent.fxml");
         if(fxmlLoader != null) {
-            SpatioTemporalMonitor controller = fxmlLoader.getController();
-            controller.setMonitors(script.getMonitors());
+            MonitorPopup controller = fxmlLoader.getController();
+            controller.addMonitors(script.getMonitors());
         }
     }
 
     private void temporalPopup() {
         FXMLLoader fxmlLoader = openMonitorWindow("fxml/temporalMonitorComponent.fxml");
         if(fxmlLoader != null) {
-            TemporalMonitor controller = fxmlLoader.getController();
-            controller.setMonitors(script.getMonitors());
+            MonitorPopup controller = fxmlLoader.getController();
+            controller.addMonitors(script.getMonitors());
         }
     }
 
@@ -116,7 +121,7 @@ public class JavaFXScriptController implements WindowController {
 
     private void saveNewFile() throws IOException {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Script file", "*.txt");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Script file", "*.ml");
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showSaveDialog(root.getScene().getWindow());
         if(file != null) {
@@ -155,7 +160,7 @@ public class JavaFXScriptController implements WindowController {
     private void open() {
         FileChooser fileChooser = new FileChooser();
         Stage stage = (Stage) root.getScene().getWindow();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Script file", "*.txt");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Script file", "*.ml");
         fileChooser.getExtensionFilters().add(extFilter);
         scriptFile = fileChooser.showOpenDialog(stage);
         if(scriptFile != null) {
