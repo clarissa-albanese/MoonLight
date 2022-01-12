@@ -62,6 +62,6 @@ public interface MonitorPopup {
         });
         monitorMenu.getItems().addAll(menuItems);
         monitorMenu.getItems().forEach(menuItem -> menuItem.setOnAction(event -> monitorMenu.setText(menuItem.getText())));
-
     }
+
 }
