@@ -1,6 +1,7 @@
 package eu.quanticol.moonlight.gui;
 
 import eu.quanticol.moonlight.gui.io.*;
+import eu.quanticol.moonlight.gui.script.JavaFXScriptController;
 import eu.quanticol.moonlight.gui.util.DialogBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -60,7 +61,7 @@ public class JavaFXHomeController {
     private final FilesLoader filesLoader = new JsonFilesLoader();
     private final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
     private JavaFXMainController mainController = null;
-    private final ArrayList<JavaFXMainController> controllers = new ArrayList<>();
+    private final ArrayList<WindowController> controllers = new ArrayList<>();
 
     /**
      * Initialize all
@@ -209,7 +210,7 @@ public class JavaFXHomeController {
      */
     public void changeThemeToAll() {
         this.initializeThemes();
-        for (JavaFXMainController main : controllers) {
+        for (WindowController main : controllers) {
             main.initializeThemes();
         }
     }
@@ -423,5 +424,30 @@ public class JavaFXHomeController {
                 }
             }
         });
+    }
+
+
+    @FXML
+    private void script() {
+        openScriptWindow();
+    }
+
+    private void openScriptWindow() {
+        try {
+            FXMLLoader fxmlLoader;
+            fxmlLoader = new FXMLLoader(classLoader.getResource("fxml/scriptComponent.fxml"));
+            Parent newRoot = fxmlLoader.load();
+            JavaFXScriptController controller = fxmlLoader.getController();
+            controllers.add(controller);
+            Stage stage = new Stage();
+            setStage(newRoot, stage);
+            stage.setMinHeight(640);
+            stage.setMinWidth(790);
+            controller.initializeThemes();
+            stage.show();
+        } catch (IOException e) {
+            DialogBuilder d = new DialogBuilder(mainController.getTheme());
+            d.warning("Failed opening project");
+        }
     }
 }

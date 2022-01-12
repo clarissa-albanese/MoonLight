@@ -30,7 +30,7 @@ import java.util.Objects;
  *
  * @author Albanese Clarissa, Sorritelli Greta
  */
-public class JavaFXMainController {
+public class JavaFXMainController implements WindowController {
 
     @FXML
     AnchorPane chartComponent;
@@ -107,6 +107,7 @@ public class JavaFXMainController {
     /**
      * Initializes the theme for the window and the graphs
      */
+    @Override
     public void initializeThemes() {
         if (root.getStylesheets() != null) {
             if (!root.getStylesheets().isEmpty())

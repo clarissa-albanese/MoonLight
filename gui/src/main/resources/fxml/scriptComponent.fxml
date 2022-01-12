@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="root" minHeight="600.0" minWidth="770.0" prefHeight="600.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.quanticol.moonlight.gui.script.JavaFXScriptController">
+   <children>
+      <BorderPane layoutX="310.0" layoutY="92.0" prefHeight="600.0" prefWidth="770.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <TextArea fx:id="textArea" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </center>
+         <top>
+            <AnchorPane maxHeight="40.0" minHeight="40.0" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Insert below your script" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ButtonBar prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                    <buttons>
+                        <Button mnemonicParsing="false" onAction="#open" text="Open">
+                           <graphic>
+                              <FontAwesomeIcon glyphName="FILE" styleClass="icon" />
+                           </graphic>
+                        </Button>
+                      <Button mnemonicParsing="false" onAction="#save" text="Save">
+                           <graphic>
+                              <FontAwesomeIcon glyphName="SAVE" styleClass="icon" />
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#check" text="Check">
+                           <graphic>
+                              <FontAwesomeIcon glyphName="CHECK" styleClass="icon" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="runButton" disable="true" mnemonicParsing="false" onAction="#run" text="Run">
+                           <graphic>
+                              <FontAwesomeIcon glyphName="PLAY" styleClass="icon" />
+                           </graphic>
+                        </Button>
+                    </buttons>
+                  </ButtonBar>
+               </children>
+            </AnchorPane>
+         </top>
+         <bottom>
+            <AnchorPane prefHeight="140.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="console" minHeight="100.0" prefHeight="100.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0" />
+                  <Label text="Console output" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>

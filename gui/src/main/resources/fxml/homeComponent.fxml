@@ -109,27 +109,17 @@
                             <RowConstraints minHeight="513.0" prefHeight="513.0" vgrow="ALWAYS" />
                           </rowConstraints>
                            <children>
-                              <ImageView fx:id="search" fitHeight="26.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" />
-                                 </GridPane.margin>
-                              </ImageView>
-                              <TextField fx:id="searchField" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="Search file" styleClass="searchArea">
-                                 <GridPane.margin>
-                                    <Insets left="40.0" />
-                                 </GridPane.margin>
-                              </TextField>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fx:id="search" fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="28.0" />
+                                    <TextField fx:id="searchField" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="Search file" styleClass="searchArea" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="28.0" />
+                                    <ButtonBar prefHeight="62.0" />
+                                    <Button mnemonicParsing="false" onAction="#script" prefWidth="80.0" text="Script" AnchorPane.bottomAnchor="28.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="28.0" />
+                                    <Button mnemonicParsing="false" onAction="#openInputSignal" prefWidth="80.0" text="Input Signal" AnchorPane.bottomAnchor="28.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="28.0" />
+                                    <ImageView fx:id="reset" fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="28.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="28.0" />
+                                 </children>
+                              </AnchorPane>
                               <Separator maxHeight="1.0" minHeight="1.0" prefHeight="1.0" GridPane.rowIndex="1" />
-                              <ButtonBar prefHeight="86.0" prefWidth="330.0">
-                                <buttons>
-                                  <Button mnemonicParsing="false" text="Monitor" />
-                                    <Button mnemonicParsing="false" text="Script" />
-                                    <Button mnemonicParsing="false" onAction="#openInputSignal" text="Input Signal" />
-                                </buttons>
-                                 <GridPane.margin>
-                                    <Insets bottom="10.0" left="300.0" right="10.0" top="10.0" />
-                                 </GridPane.margin>
-                              </ButtonBar>
                               <AnchorPane GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                                  <children>
                                     <ListView fx:id="recentFiles" fixedCellSize="40.0" focusTraversable="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -139,11 +129,6 @@
                                        </styleClass></ListView>
                                  </children>
                               </AnchorPane>
-                              <ImageView fx:id="reset" fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <GridPane.margin>
-                                    <Insets left="295.0" />
-                                 </GridPane.margin>
-                              </ImageView>
                            </children>
                         </GridPane>
                         <GridPane fx:id="themePane" disable="true" minHeight="600.0" minWidth="590.0" prefHeight="600.0" prefWidth="590.0" styleClass="rightSide" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
