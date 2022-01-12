@@ -440,14 +440,18 @@ public class JavaFXHomeController {
             JavaFXScriptController controller = fxmlLoader.getController();
             controllers.add(controller);
             Stage stage = new Stage();
-            setStage(newRoot, stage);
+            stage.setTitle("Unnamed");
+            stage.initStyle(StageStyle.DECORATED);
+            stage.setScene(new Scene(newRoot));
+            Image icon = new Image(Objects.requireNonNull(classLoader.getResource("images/ML.png")).toString());
+            stage.getIcons().add(icon);
             stage.setMinHeight(640);
             stage.setMinWidth(790);
             controller.initializeThemes();
             stage.show();
         } catch (IOException e) {
             DialogBuilder d = new DialogBuilder(mainController.getTheme());
-            d.warning("Failed opening project");
+            d.warning("Failed opening window");
         }
     }
 }

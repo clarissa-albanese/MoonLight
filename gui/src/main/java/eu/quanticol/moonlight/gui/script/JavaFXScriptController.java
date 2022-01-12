@@ -3,6 +3,7 @@ package eu.quanticol.moonlight.gui.script;
 import eu.quanticol.moonlight.MoonLightScript;
 import eu.quanticol.moonlight.gui.WindowController;
 import eu.quanticol.moonlight.gui.io.JsonThemeLoader;
+import eu.quanticol.moonlight.gui.util.DialogBuilder;
 import eu.quanticol.moonlight.script.MoonLightScriptLoaderException;
 import eu.quanticol.moonlight.script.ScriptLoader;
 import javafx.fxml.FXML;
@@ -13,9 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class JavaFXScriptController implements WindowController {
@@ -35,6 +34,11 @@ public class JavaFXScriptController implements WindowController {
     private File scriptFile = null;
     private MoonLightScript script = null;
 
+
+    private void setTitle(String title) {
+        Stage stage = (Stage) root.getScene().getWindow();
+        stage.setTitle(title);
+    }
 
     @FXML
     private void check() {
@@ -72,6 +76,35 @@ public class JavaFXScriptController implements WindowController {
 
     @FXML
     private void save() {
+        DialogBuilder d = new DialogBuilder(JsonThemeLoader.getInstance().getGeneralTheme());
+        try {
+            if(scriptFile == null) {
+                saveNewFile();
+            } else saveSameFile();
+           d.info("Successful saving.");
+        } catch (IOException e) {
+            d.error("Failed saving file.");
+        }
+    }
+
+    private void saveSameFile() throws IOException {
+        Writer writer = new FileWriter(scriptFile);
+        writer.write(textArea.getText());
+        writer.close();
+    }
+
+    private void saveNewFile() throws IOException {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Script file", "*.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showSaveDialog(root.getScene().getWindow());
+        if(file != null) {
+            Writer writer = new FileWriter(file);
+            writer.write(textArea.getText());
+            writer.close();
+            scriptFile = file;
+            setTitle(scriptFile.getName());
+        }
     }
 
     @FXML
@@ -81,18 +114,19 @@ public class JavaFXScriptController implements WindowController {
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Script file", "*.txt");
         fileChooser.getExtensionFilters().add(extFilter);
         scriptFile = fileChooser.showOpenDialog(stage);
-        fileToText();
+        if(scriptFile != null) {
+            textArea.clear();
+            fileToText();
+            setTitle(scriptFile.getName());
+            runButton.setDisable(true);
+            console.setText("");
+        }
     }
 
     private void fileToText() {
-        try {
-            Scanner s = new Scanner(scriptFile).useDelimiter("\\s+");
-            while (s.hasNext()) {
-                if (s.hasNextInt()) { // check if next token is an int
-                    textArea.appendText(s.nextInt() + " "); // display the found integer
-                } else {
-                    textArea.appendText(s.next() + " "); // else read the next token
-                }
+        try (Scanner input = new Scanner(scriptFile)) {
+            while (input.hasNextLine()) {
+                textArea.appendText(input.nextLine() + "\n");
             }
         } catch (FileNotFoundException ex) {
             console.setText(ex.getMessage());
