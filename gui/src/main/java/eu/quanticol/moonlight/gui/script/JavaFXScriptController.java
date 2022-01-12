@@ -11,14 +11,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,7 +28,7 @@ import java.util.Scanner;
 public class JavaFXScriptController implements WindowController {
 
     @FXML
-    Label console;
+    TextArea console;
 
     @FXML
     TextArea textArea;
@@ -56,7 +55,10 @@ public class JavaFXScriptController implements WindowController {
             runButton.setDisable(script == null);
             console.setText("BUILD SUCCESSFUL");
         } catch (MoonLightScriptLoaderException | IOException e) {
-            console.setText(e.getMessage());
+//            console.setText(Arrays.toString(e.getStackTrace()));
+            StringWriter stackTraceWriter = new StringWriter();
+            e.printStackTrace(new PrintWriter(stackTraceWriter));
+            console.setText(e.toString() + "\n" + stackTraceWriter.toString());
         }
     }
 
@@ -79,16 +81,18 @@ public class JavaFXScriptController implements WindowController {
 
     private void spatialTemporalPopup() {
         FXMLLoader fxmlLoader = openMonitorWindow("fxml/spatioTemporalMonitorComponent.fxml");
-        assert fxmlLoader != null;
-        SpatioTemporalMonitor controller = fxmlLoader.getController();
-        controller.setMonitors(script.getMonitors());
+        if(fxmlLoader != null) {
+            SpatioTemporalMonitor controller = fxmlLoader.getController();
+            controller.setMonitors(script.getMonitors());
+        }
     }
 
     private void temporalPopup() {
         FXMLLoader fxmlLoader = openMonitorWindow("fxml/temporalMonitorComponent.fxml");
-        assert fxmlLoader != null;
-        TemporalMonitor controller = fxmlLoader.getController();
-        controller.setMonitors(script.getMonitors());
+        if(fxmlLoader != null) {
+            TemporalMonitor controller = fxmlLoader.getController();
+            controller.setMonitors(script.getMonitors());
+        }
     }
 
     @FXML
@@ -132,6 +136,8 @@ public class JavaFXScriptController implements WindowController {
             Stage stage = new Stage();
             stage.setTitle("MoonLight");
             stage.initStyle(StageStyle.DECORATED);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
             stage.setScene(new Scene(newRoot));
             Image icon = new Image(Objects.requireNonNull(ClassLoader.getSystemClassLoader().getResource("images/ML.png")).toString());
             stage.getIcons().add(icon);
