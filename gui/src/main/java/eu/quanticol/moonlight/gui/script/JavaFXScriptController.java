@@ -7,14 +7,23 @@ import eu.quanticol.moonlight.gui.util.DialogBuilder;
 import eu.quanticol.moonlight.script.MoonLightScriptLoaderException;
 import eu.quanticol.moonlight.script.ScriptLoader;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class JavaFXScriptController implements WindowController {
@@ -69,9 +78,17 @@ public class JavaFXScriptController implements WindowController {
     }
 
     private void spatialTemporalPopup() {
+        FXMLLoader fxmlLoader = openMonitorWindow("fxml/spatioTemporalMonitorComponent.fxml");
+        assert fxmlLoader != null;
+        SpatioTemporalMonitor controller = fxmlLoader.getController();
+        controller.setMonitors(script.getMonitors());
     }
 
     private void temporalPopup() {
+        FXMLLoader fxmlLoader = openMonitorWindow("fxml/temporalMonitorComponent.fxml");
+        assert fxmlLoader != null;
+        TemporalMonitor controller = fxmlLoader.getController();
+        controller.setMonitors(script.getMonitors());
     }
 
     @FXML
@@ -104,6 +121,27 @@ public class JavaFXScriptController implements WindowController {
             writer.close();
             scriptFile = file;
             setTitle(scriptFile.getName());
+        }
+    }
+
+    private FXMLLoader openMonitorWindow(String name) {
+        try {
+            FXMLLoader fxmlLoader;
+            fxmlLoader = new FXMLLoader(ClassLoader.getSystemClassLoader().getResource(name));
+            Parent newRoot = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("MoonLight");
+            stage.initStyle(StageStyle.DECORATED);
+            stage.setScene(new Scene(newRoot));
+            Image icon = new Image(Objects.requireNonNull(ClassLoader.getSystemClassLoader().getResource("images/ML.png")).toString());
+            stage.getIcons().add(icon);
+            stage.show();
+            return fxmlLoader;
+        } catch (IOException e) {
+            DialogBuilder d = new DialogBuilder(JsonThemeLoader.getInstance().getGeneralTheme());
+            e.printStackTrace();
+            d.warning("Failed opening monitor");
+            return null;
         }
     }
 
