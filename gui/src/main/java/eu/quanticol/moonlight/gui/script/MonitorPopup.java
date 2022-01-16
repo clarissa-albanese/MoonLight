@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Interface that defines a monitor popups
@@ -48,20 +47,16 @@ public interface MonitorPopup {
      * Sets the monitors
      *
      * @param monitors         monitors to add
-     * @param monitorsArray    arrayList of monitors
      * @param monitorMenu      menuButton of monitors
      */
-    default void setMonitors(String[] monitors, ArrayList<String[]> monitorsArray, MenuButton monitorMenu){
-        monitorsArray.add(monitors);
+    default void setMonitors(String[] monitors, MenuButton monitorMenu){
         ArrayList<MenuItem> menuItems = new ArrayList<>();
-        monitorsArray.forEach(a -> {
+        for (String monitor : monitors) {
             MenuItem menuItem = new MenuItem();
-            String text = Arrays.toString(a).replace("[", "").replace("]", "");
-            menuItem.setText(text);
+            menuItem.setText(monitor);
             menuItems.add(menuItem);
-        });
+        }
         monitorMenu.getItems().addAll(menuItems);
         monitorMenu.getItems().forEach(menuItem -> menuItem.setOnAction(event -> monitorMenu.setText(menuItem.getText())));
     }
-
 }

@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import java.util.ArrayList;
 
 /**
  * Class that implements the {@link MonitorPopup} interface and is responsible for
@@ -23,8 +22,6 @@ public class SpatioTemporalPopup implements MonitorPopup {
     Label fileCSV;
     @FXML
     MenuButton monitorMenu;
-
-    private final ArrayList<String[]> monitorsArray = new ArrayList<>();
 
     /**
      * Opens the FileExplorer to choose a file .tra
@@ -50,7 +47,7 @@ public class SpatioTemporalPopup implements MonitorPopup {
      * @param monitors     monitors of script
      */
     public void addMonitors(String[] monitors) {
-       this.setMonitors(monitors, monitorsArray, monitorMenu);
+       this.setMonitors(monitors, monitorMenu);
     }
 
     @FXML
